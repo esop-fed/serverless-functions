@@ -8,7 +8,7 @@ exports["default"] = (function (req, res) {
         for (var id in req.body) {
             data[id] = req.body[id];
         }
-        return res.send(200);
+        return res.sendStatus(200);
     }
     if (req.method === 'GET') {
         return res.json({
