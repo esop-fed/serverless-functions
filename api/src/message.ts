@@ -10,7 +10,7 @@ export default (req: any, res: any) => {
             data[id] = req.body[id]
         }
 
-        return res.sendStatus(200);
+        return res.sendStatus ? res.sendStatus(200) : res.send(200);
     }
 
     if (req.method === 'GET') {
@@ -19,5 +19,5 @@ export default (req: any, res: any) => {
         });
     }
 
-    res.sendStatus(400);
+    res.sendStatus ? res.sendStatus(400) : res.send(400);
 };
