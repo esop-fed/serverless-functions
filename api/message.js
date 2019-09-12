@@ -1,12 +1,17 @@
 "use strict";
 exports.__esModule = true;
-exports.data = {};
+var utils_1 = require("./utils");
+var data = {};
 exports["default"] = (function (req, res) {
-    Object.assign(exports.data, req.body);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-    res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-    res.json({
-        data: exports.data
-    });
+    utils_1.setCors(res);
+    if (req.method === 'POST') {
+        Object.assign(data, req.body);
+        return res.send(200);
+    }
+    if (req.method === 'GET') {
+        return res.json({
+            data: data
+        });
+    }
+    res.send(400);
 });
