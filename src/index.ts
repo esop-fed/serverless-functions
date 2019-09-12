@@ -1,23 +1,17 @@
-// // import * as Koa from 'koa';
-// // import * as Router from 'koa-router';
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import message from '../api/src/message';
 
-// // const app = new Koa();
-// // const router = new Router();
+const app = express();
+const port = process.env.PORT || 3040;
+const host = process.env.HOST || 'localhost';
 
-// // router.get('/*', async (ctx) => {
-// //     ctx.body = 'Hello World!';
-// // });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// // app.use(router.routes());
+app.get('/message', message);
+app.post('/message', message);
 
-// // app.listen(3040);
-
-// // console.log('Server running on port 3040');
-
-// module.exports = (req: any, res: any) => {
-//     res.json({
-//         body: req.body,
-//         query: req.query,
-//         cookies: req.cookies
-//     });
-// };
+app.listen(Number(port), host, () => {
+    console.log(`本地：http://${host}:${port}`);
+});

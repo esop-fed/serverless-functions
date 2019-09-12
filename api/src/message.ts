@@ -8,7 +8,7 @@ export default (req: any, res: any) => {
     if (req.method === 'POST') {
         Object.assign(data, req.body);
 
-        return res.send(200);
+        return res.sendStatus(200);
     }
 
     if (req.method === 'GET') {
@@ -17,5 +17,5 @@ export default (req: any, res: any) => {
         });
     }
 
-    res.send(400);
+    res.sendStatus(400);
 };
