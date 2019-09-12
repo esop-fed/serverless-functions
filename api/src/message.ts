@@ -1,12 +1,14 @@
 import { setCors } from "./utils";
 
-const data = {};
+const data: any = {};
 
 export default (req: any, res: any) => {
     setCors(res);
 
     if (req.method === 'POST') {
-        Object.assign(data, req.body);
+        for(let id in req.body) {
+            data[id] = req.body[id]
+        }
 
         return res.sendStatus(200);
     }
